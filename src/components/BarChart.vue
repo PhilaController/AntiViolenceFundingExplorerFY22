@@ -17,12 +17,20 @@ import VueApexCharts from "vue-apexcharts";
 import { sum } from "d3-array";
 
 export default {
-  props: ["data", "height", "categories", "colors"],
+  props: ["data", "height", "categories", "colors", "show_percents", "xmax"],
   components: { apexchart: VueApexCharts },
   data() {
     return {
-      labelWidth: 250,
+      labelWidth: 150,
     };
+  },
+  methods: {
+    formatTooltip(d) {
+      let out = formatFn(d);
+      if (this.show_percents)
+        out = `${out} (${((100 * d) / this.total).toFixed(0)}%)`;
+      return out;
+    },
   },
   computed: {
     showChart() {
@@ -70,6 +78,7 @@ export default {
           },
           axisTicks: { show: false },
           axisBorder: { show: false },
+          max: this.xmax,
         },
         yaxis: {
           labels: {
@@ -85,8 +94,7 @@ export default {
         },
         dataLabels: {
           enabled: true,
-          formatter: (d) =>
-            `${formatFn(d)} (${((100 * d) / this.total).toFixed(0)}%)`,
+          formatter: this.formatTooltip,
           textAnchor: "start",
           offsetY: 7,
           offsetX: 10,
