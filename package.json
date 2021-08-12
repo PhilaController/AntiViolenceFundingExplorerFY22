@@ -12,8 +12,10 @@
     "core-js": "^3.6.5",
     "d3-array": "^3.0.1",
     "d3-format": "^3.0.1",
+    "pattern.css": "^1.0.0",
     "vue": "^2.6.11",
     "vue-apexcharts": "^1.6.1",
+    "vue-router": "^3.5.2",
     "vue-slider-component": "^3.2.14",
     "vuetify": "^2.4.0"
   },

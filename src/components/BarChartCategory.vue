@@ -8,6 +8,11 @@
       :options="chartOptions"
       v-if="showChart"
     ></apexchart>
+    <div v-if="show_note && series.length == 5" class="bar-chart-footer">
+      Note: The diagonal yellow lines denote funding for the Anti-Violence
+      Community Expansion Grants, which are intended to fund intervention work
+      but have not yet been awarded to community organizations.
+    </div>
   </div>
 </template>
 
@@ -17,7 +22,15 @@ import VueApexCharts from "vue-apexcharts";
 import { sum } from "d3-array";
 
 export default {
-  props: ["data", "height", "categories", "colors", "show_percents", "xmax"],
+  props: [
+    "show_note",
+    "data",
+    "height",
+    "categories",
+    "colors",
+    "show_percents",
+    "xmax",
+  ],
   components: { apexchart: VueApexCharts },
   data() {
     return {
@@ -25,11 +38,16 @@ export default {
     };
   },
   methods: {
-    formatTooltip(d) {
-      let out = formatFn(d);
-      if (this.show_percents)
-        out = `${out} (${((100 * d) / this.total).toFixed(0)}%)`;
-      return out;
+    formatTooltip(d, opts) {
+      if (opts.seriesIndex == opts.dataPointIndex) {
+        let total = sum(this.series[opts.dataPointIndex].data);
+        if (opts.seriesIndex == 0 && this.series.length == 5)
+          total += sum(this.series[4].data);
+        let out = formatFn(total);
+        if (this.show_percents)
+          out = `${out} (${((100 * total) / this.total).toFixed(0)}%)`;
+        return out;
+      }
     },
   },
   computed: {
@@ -38,21 +56,52 @@ export default {
       else return this.total > 0;
     },
     total() {
-      if (this.series) return sum(this.series[0]["data"]);
+      if (this.data) {
+        let total = 0;
+        for (const [key, value] of this.data) total += value;
+        return total;
+      }
     },
     series() {
       if (this.data) {
         let data = [];
-        for (let i = 0; i < this.categories.length; i++)
-          data.push(this.data.get(this.categories[i]) || 0);
-        return [{ data: data, name: "Total" }];
+        for (let i = 0; i < this.categories.length; i++) {
+          let key = this.categories[i];
+          let value = this.data.get(key) || 0;
+          let s = [];
+          let d = { name: key };
+          for (let j = 0; j < this.categories.length; j++) {
+            if (i == j) {
+              s.push(value);
+            } else s.push(null);
+          }
+          d["data"] = s;
+          data.push(d);
+        }
+
+        let key = "Intervention/Prevention";
+        let value = this.data.get(key);
+
+        if (value) {
+          let i = this.categories.indexOf("Intervention");
+          let s = [];
+          let d = { name: key };
+          for (let j = 0; j < this.categories.length; j++) {
+            if (i == j) {
+              s.push(value);
+            } else s.push(null);
+          }
+          d["data"] = s;
+          data.push(d);
+        }
+        return data;
       }
     },
     chartOptions() {
       return {
-        colors: this.colors,
         chart: {
           type: "bar",
+          stacked: true,
           height: this.height,
           toolbar: {
             show: false,
@@ -64,10 +113,10 @@ export default {
         plotOptions: {
           bar: {
             horizontal: true,
-            distributed: true,
             dataLabels: { position: "bottom" },
           },
         },
+        colors: this.colors,
         legend: { show: false },
         xaxis: {
           type: "category",
@@ -105,7 +154,7 @@ export default {
             colors: ["#212529"],
           },
         },
-        grid: { show: false },
+        grid: { show: false, padding: { bottom: -10 } },
         states: {
           hover: {
             filter: {
@@ -118,6 +167,19 @@ export default {
             },
           },
         },
+        stroke: {
+          width: 2,
+        },
+        fill: {
+          type: ["fill", "fill", "fill", "fill", "pattern"],
+          opacity: 1,
+          pattern: {
+            style: "slantedLines",
+            width: 7,
+            strokeWidth: 2.5,
+            height: 40,
+          },
+        },
       };
     },
   },
@@ -125,6 +187,11 @@ export default {
 </script>
 
 <style>
+.bar-chart-footer {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.9rem;
+  font-style: italic;
+}
 .apexcharts-xaxis-label {
   dominant-baseline: middle !important;
 }

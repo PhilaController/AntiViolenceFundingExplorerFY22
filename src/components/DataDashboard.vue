@@ -1,9 +1,46 @@
 <template>
-  <div class="data-dashboard">
+  <div class="data-dashboard section">
     <!-- First row: Filters and charts -->
     <v-row no-gutters class="mt-5">
-      <!-- 1. Filters -->
-      <v-col cols="12" sm="12" md="4">
+      <!-- 1. Charts -->
+      <v-col cols="12" sm="12" md="6">
+        <div>
+          <div class="subtitle">Funding Summary</div>
+          <div class="font-italic mb-3">
+            Charts will update automatically to reflect the current data
+            selection when filters are applied.
+          </div>
+        </div>
+        <div>
+          <div class="d-flex flex-column align-items-end">
+            <BarChart
+              :data="kindTotals"
+              :categories="allowedKindNames"
+              :colors="allowedKindNames.map(getExistingColor)"
+              :height="125"
+              class="w-100"
+              :show_percents="true"
+              :xmax="100e6"
+            />
+            <BarChartCategory
+              :data="categoryTotals"
+              :show_note="true"
+              :categories="allowedCategoryNames"
+              :colors="allowedCategoryNames.map(getShortCategoryColor)"
+              :height="200"
+              class="w-100"
+              :show_percents="true"
+              :xmax="100e6"
+            />
+          </div>
+        </div>
+      </v-col>
+
+      <!-- Add space between filters and charts -->
+      <v-spacer></v-spacer>
+
+      <!-- 2. Filters -->
+      <v-col cols="12" sm="12" md="5" class="mt-5 mt-md-0">
         <!-- Header -->
         <div>
           <div class="subtitle">Filters</div>
@@ -59,6 +96,7 @@
                 @click="select"
                 @click:close="removeKind(item.id)"
                 :color="getExistingColor(item.value)"
+                :style="getExistingBorderColor(item.value)"
                 label
               >
                 {{ item.value }}
@@ -87,6 +125,7 @@
                 @click="select"
                 @click:close="removeCategory(item.id)"
                 :color="getShortCategoryColor(item.value)"
+                :style="getCategoryBorderColor(item.value)"
                 label
               >
                 {{ item.value }}
@@ -127,50 +166,16 @@
           >
         </div>
       </v-col>
-
-      <!-- Add space between filters and charts -->
-      <v-spacer></v-spacer>
-
-      <!-- 2. Charts -->
-      <v-col cols="12" sm="12" md="7">
-        <div>
-          <div class="subtitle indented">Funding Summary</div>
-          <div class="font-italic mb-3 indented">
-            Charts will update automatically to reflect the current data
-            selection when filters are applied.
-          </div>
-        </div>
-        <div>
-          <div class="d-flex flex-column align-items-end">
-            <BarChart
-              :data="kindTotals"
-              :categories="allowedKindNames"
-              :colors="allowedKindNames.map(getExistingColor)"
-              :height="125"
-              class="w-100"
-              :show_percents="true"
-            />
-            <BarChart
-              :data="categoryTotals"
-              :categories="allowedCategoryNames"
-              :colors="allowedCategoryNames.map(getShortCategoryColor)"
-              :height="200"
-              class="w-100"
-              :show_percents="true"
-            />
-          </div>
-        </div>
-      </v-col>
     </v-row>
 
     <!-- Second row: data table -->
-    <v-row no-gutters class="mt-5 ml-2 mr-2">
+    <v-row no-gutters class="data-table-row ml-2 mr-2">
       <!-- Title and Subtitle -->
-      <v-col cols="12" md="8" sm="12">
+      <v-col cols="12" md="8" sm="7">
         <div class="d-flex flex-column">
-          <div class="subtitle">Funded Programs</div>
+          <div class="subtitle">Program Details</div>
           <div class="font-italic mb-3">
-            Additional details for each program can be shown by clicking on an
+            Show/hide additional details for each program by clicking on an
             individual row.
           </div>
         </div>
@@ -179,7 +184,7 @@
       <v-spacer></v-spacer>
 
       <!-- Buttons: Show/Collapse Rows -->
-      <v-col cols="12" md="2" sm="6" xs="12">
+      <v-col cols="12" md="2" sm="4" xs="12">
         <div class="d-flex flex-column">
           <v-btn
             class="table-button"
@@ -220,8 +225,8 @@
           :hide-default-footer="true"
           show-expand
           must-sort
-          :expanded.sync="expanded"
-          @click:row="clicked"
+          :expanded="expanded"
+          @click:row="handleClickedRow"
         >
           <template v-slot:item.program="{ item }">
             {{ loadTitle(item.id) }}
@@ -230,6 +235,7 @@
             <v-chip
               class="existing-chip"
               :color="getExistingColor(item.kind)"
+              :style="getExistingBorderColor(item.kind)"
               label
             >
               {{ item.kind }}
@@ -238,10 +244,18 @@
           <template v-slot:item.short_cat="{ item }">
             <v-chip
               class="short-category-chip"
-              :color="getShortCategoryColor(item.short_cat)"
+              :color="getCategoryChipColor(item)"
+              :style="getCategoryBorderColor(item.short_cat)"
+              :class="{
+                'dashed-chip': item.short_cat == 'Intervention/Prevention',
+              }"
               label
             >
-              {{ item.short_cat }}
+              {{
+                item.short_cat == "Intervention/Prevention"
+                  ? "Intervention"
+                  : item.short_cat
+              }}
             </v-chip>
           </template>
           <template v-slot:item.total="{ item }">
@@ -264,12 +278,14 @@
 import { formatFn } from "@/utils/formatFns.js";
 import { rollup, sum, min, max } from "d3-array";
 import BarChart from "./BarChart";
+import BarChartCategory from "./BarChartCategory";
 import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/default.css";
+import "pattern.css/dist/pattern.css";
 
 export default {
   props: ["data"],
-  components: { BarChart, VueSlider },
+  components: { BarChart, VueSlider, BarChartCategory },
   data() {
     return {
       expanded: [],
@@ -283,20 +299,20 @@ export default {
       ],
       selectedKind: null,
       selectedCategories: [],
-      totalRange: [null, null],
-      allowedTotalRange: [null, null],
+      totalRange: [0, 100e6],
+      allowedTotalRange: [0, 100e6],
     };
   },
   mounted() {
     this.$nextTick(() => {
-      // Calculate allowed range
-      this.allowedTotalRange = [
+      // Calculate allowed range for the totals
+      this.allowedTotalRange = this.totalRange = [
         min(this.data, (d) => d.total),
         max(this.data, (d) => d.total),
       ];
 
-      // Set it
-      this.totalRange = this.allowedTotalRange;
+      // Expand the table too (if not on mobile)
+      if (!this.$vuetify.breakpoint.mobile) this.expanded = this.data;
     });
   },
   computed: {
@@ -307,7 +323,11 @@ export default {
       return data;
     },
     allExpanded() {
-      return this.expanded.length == this.currentDataSelection.length;
+      for (let i = 0; i < this.currentDataSelection.length; i++) {
+        let index = this.expanded.indexOf(this.currentDataSelection[i]);
+        if (index == -1) return false;
+      }
+      return true;
     },
     noExpanded() {
       return this.expanded.length == 0;
@@ -387,21 +407,20 @@ export default {
           value: "program",
           width: "50%",
         },
-
+        { text: "Total", value: "total", width: "15%" },
         {
           text: "New or Existing?",
           value: "kind",
           sortable: false,
-          width: "20%",
+          width: "15%",
         },
         {
           text: "Spending Type",
           value: "short_cat",
           sortable: false,
-          width: "20%",
+          width: "15%",
         },
-        { text: "Total", value: "total", width: "10%" },
-        { text: "", value: "data-table-expand" },
+        { text: "", value: "data-table-expand", width: "5%" },
       ];
     },
   },
@@ -434,7 +453,7 @@ export default {
       this.selectedCategories = [];
       this.totalRange = this.allowedTotalRange;
     },
-    clicked(value) {
+    handleClickedRow(value) {
       let i = this.expanded.indexOf(value);
       if (i == -1) this.expanded.push(value);
       else {
@@ -448,6 +467,27 @@ export default {
     getExistingColor(value) {
       if (value == "Existing") return "#FFCDD2";
       else return "#C8E6C9";
+    },
+    getExistingBorderColor(value) {
+      let color;
+      if (value == "Existing") color = "#E57373";
+      else color = "#81C784";
+      return { border: `2px solid ${color}` };
+    },
+    getCategoryBorderColor(value) {
+      let color;
+      if (value == "Intervention") color = "#FFCA28";
+      if (value == "Police Response") color = "#78909C";
+      if (value == "Prevention") color = "#42A5F5";
+      if (value == "Transformation") color = "#7E57C2";
+      return { border: `2px solid ${color}` };
+    },
+    getCategoryChipColor(item) {
+      let cat =
+        item.short_cat == "Intervention/Prevention"
+          ? "Intervention"
+          : item.short_cat;
+      return this.getShortCategoryColor(cat);
     },
     getShortCategoryColor(value) {
       if (value == "Intervention") return "#FFE082";
@@ -473,6 +513,18 @@ export default {
 </script>
 
 <style >
+[data-vuetify]
+  .theme--light.v-data-table
+  > .v-data-table__wrapper
+  > table
+  > tbody
+  > tr:hover:not(.v-data-table__expanded__content):not(.v-data-table__empty-wrapper) {
+  background: #cfcfcf;
+}
+
+.data-table-row {
+  margin-top: 50px !important;
+}
 /* Sliders */
 .total-slider-wrapper {
   height: 100px;
@@ -509,6 +561,17 @@ export default {
   width: 125px;
   justify-content: center;
 }
+.dashed-chip {
+  background: repeating-linear-gradient(
+    45deg,
+    white,
+    white 3px,
+    #ffe082 3px,
+    #ffe082 calc(2 * 3px)
+  ) !important;
+  border: 2px solid #ffca28 !important;
+  text-shadow: white 0px 0px 10px !important;
+}
 .my-search-field .v-text-field__slot {
   min-height: 42px;
   align-items: flex-end;
@@ -518,9 +581,7 @@ export default {
   font-size: 1.4rem;
   margin-bottom: 10px;
 }
-.data-dashboard .indented {
-  margin-left: 150px;
-}
+
 @media only screen and (max-width: 960px) {
   .data-dashboard .indented {
     margin-left: 0px;
