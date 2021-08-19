@@ -2,45 +2,39 @@
   <div class="analysis-section">
     <div class="section intro mt-5">
       <p>
-        After several weeks of negotiations with Mayor Kenney, City Council
-        approved the
+        On June 24, 2021, City Council approved the
         <a
           href="https://admin.phila.gov/media/20210709120158/budget-in-brief-FY2022-approved.pdf"
           target="_blank"
           >budget for fiscal year 2022</a
         >
-        (FY22) as part of the City’s annual Five Year Financial Plan.
-        Negotiations are a typical part of the budget-making process; this year,
-        the discussions around the City’s spending priorities were heavily
-        focused on addressing the increasing levels of gun violence in
-        Philadelphia. Upon the approval of the Five Year Plan on June 24, 2021,
-        City Council and the Mayor’s administration
-        <a
-          href="https://phlcouncil.com/city-council-fy2022-budget/"
-          target="_blank"
-          >announced</a
-        >
-        they had agreed to add $68M to existing anti-violence funding, bringing
-        the total investment in anti-violence efforts to $155M for FY22.
+        (FY22). In light of the increasing levels of gun violence and the
+        infusion of money from the American Rescue Plan, anti-violence spending
+        was a key focus of negotiations between the Mayor’s Office and City
+        Council. According to data provided by the Kenney administration, the
+        final FY22 budget included a $155 million (M) investment for
+        anti-violence strategies, with $68M in new funding and $87M allocated to
+        existing anti-violence efforts.
       </p>
       <p>
-        To increase transparency around this significant investment and ensure
-        that taxpayer dollars are being used effectively to reduce gun violence,
-        the Controller’s Office examined the line items that constitute the
-        $155M investment in violence prevention programming. While we found many
-        of the investments to be valuable, most of the funding supports programs
-        that will likely take years to produce measurable reductions in gun
-        violence. Moreover, more than $23M of the funding characterized as
-        anti-violence by the Kenney administration is earmarked for other uses,
-        including reforms to the City’s 911 response procedures and partial
-        restoration of existing programming in the Free Library and Parks and
-        Recreation departments. Given the severity of the city's gun violence
-        crisis, more funding should be allocated to initiatives and programming
-        that will yield reductions in shootings and homicides as soon as
-        possible, investments in targeted community intervention programs. Out
-        of the total $155M investment, only 21 percent ($33M) of the funding is
-        intended to support evidence-based interventions that have been found to
-        yield short-term reductions in shootings and homicides.
+        To better understand the programs funded with this investment, the City
+        Controller’s Office examined the line items that constitute the $155M
+        investment in violence prevention programming. This examination is meant
+        to serve as a resource for policymakers and Philadelphians alike,
+        bringing necessary transparency to this critical investment and to
+        ensure that taxpayer dollars are being used effectively to reduce gun
+        violence.
+      </p>
+      <p>
+        While we found many of the investments to be valuable, most of the
+        funding supports programs that will likely take years to produce
+        measurable reductions in gun violence. Moreover, some of the funding
+        characterized as anti-violence by the Kenney administration is earmarked
+        for other uses and is not specifically focused on the gun violence
+        crisis. As this analysis shows, only 21 percent ($33M) out of the total
+        $155M investment is intended to support evidence-based interventions
+        that have been found to yield short-term reductions in shootings and
+        homicides.
       </p>
 
       <h2 class="mb-2 mt-5">Background</h2>
@@ -71,14 +65,15 @@
       <br />
       <p>
         These categories help to frame the expectations for violence reduction
-        results and stand in contrast to those that the
+        results. It should be noted that the Kenney administration developed
         <a
           href="https://www.phila.gov/2021-06-30-fy22-budget-how-were-investing-over-150-million-to-reduce-gun-violence/"
           target="_blank"
-          >Kenney administration used</a
+          >its own categories</a
         >
-        to describe their spending priorities, which were Community Empowerment,
-        Healing, Prevention, and Safe Havens for Youth and Families.
+        to describe their anti-violence spending priorities: Community
+        Empowerment; Healing; Prevention; Employment and Careers; and Safe
+        Havens for Youth and Families.
       </p>
 
       <!-- Categories -->
@@ -168,11 +163,12 @@
         <hr class="titlebar" />
 
         <p class="mt-5">
-          The vast majority ($110M, or 70%) of the City’s total anti-violence
-          investment in FY22 is directed toward preventive and transformational
-          programs rather than intervention initiatives that work to reduce gun
-          violence in the short-term. As listed in the
-          <router-link to="/explorer">Funding Explorer</router-link>,
+          About 70 percent of the City’s total $155M anti-violence investment in
+          FY22 is directed toward preventive and transformational programs,
+          while 21 percent is targeted to intervention efforts to interrupt
+          violence in the short term. The remaining 9 percent is intended to
+          improve police responses to behavioral health incidents. As listed in
+          the <router-link to="/explorer">Funding Explorer</router-link>,
           investments that the City considers to be part of its violence
           reduction efforts include:
         </p>
@@ -182,30 +178,34 @@
             $28.3M for after-school programs for students in pre-K through grade
             12;
           </li>
+          <li>$27.4M for economic development and workforce programs;</li>
           <li>$23.0M for reentry and juvenile justice services;</li>
-          <li>$15.9M for economic development and workforce programs;</li>
-          <li>$13.3M for efforts to mitigate police violence;</li>
+          <li>
+            $13.3M for efforts to mitigate police violence and reform 911
+            procedures;
+          </li>
           <li>
             $7.1M for partial restoration of the Parks & Recreation budget; and
           </li>
           <li>$3.0M for partial restoration of the Free Library budget.</li>
         </ul>
         <br />
+        <p>
+          While these are worthy investments for the City to make, this funding
+          allocation is not being used exclusively for anti-violence programs.
+          As an example, funding for Parks and Recreation and the Free Library
+          restores some pandemic-related service cuts. For the purpose of this
+          analysis, this funding is classified as prevention, as these
+          departments play an important role in creating safe and thriving
+          neighborhoods. However, some of the added funding is being used to
+          support general City operations and preexisting programming. It
+          includes restoration of the seasonal and aquatics Parks and Recreation
+          programs, funding for the Dell Music Center, restoration of citywide
+          5-day library service, and support for the LEAP after-school program.
+        </p>
 
         <p>
-          While these are worthy investments for the City to make, they are not
-          targeted to stopping gun violence in the short-term. In fact, some of
-          the funding is being used to support general City operations and
-          preexisting programming. The increased funding for Parks & Recreation
-          and the Free Library restores some pandemic-related service cuts and
-          is not directed to any specific anti-violence initiatives. In the
-          Parks and Recreation budget, it includes restoration of the seasonal
-          and aquatics programs, as well as funding for the Dell Music Center.
-          In the Free Library budget, it includes funding for citywide 5-day
-          library service and the LEAP after-school program.
-        </p>
-        <p>
-          Preventative investments in other areas, such as reentry and juvenile
+          Preventive investments in other areas, such as reentry and juvenile
           justice services and after-school programs, typically take years to
           achieve a measurable reduction in shootings. Other programs, such as
           blight abatement and workforce development, focus on creating
@@ -218,10 +218,10 @@
             ><a href="#ref3" id="fn3">[3]</a></sup
           >
         </p>
-
         <p>
-          One of the investments added in FY22 for short-term violence
-          intervention is the expansion of the
+          Out of the $68M in new anti-violence investments in FY22, about 34
+          percent of the funding is directed to short-term violence
+          intervention. One of these added investments is the expansion of the
           <a
             href="https://www.phila.gov/2020-08-10-group-violence-intervention-partnering-with-community-and-law-enforcement-to-stop-the-shooting/"
             target="_blank"
@@ -232,48 +232,40 @@
             >Community Crisis Intervention Program</a
           >
           (CCIP), totaling $1.3M for both programs. With this additional
-          funding, these programs will receive $6.6M in funding in FY22. While
-          GVI and CCIP are versions of evidence-based programs that have had
-          success in other cities, no evaluation of the City’s implementation
-          has been publicly released, making it difficult to know if the
-          programs are working as intended in Philadelphia. These programs are
-          administered by the City’s Office of Violence Prevention (OVP), which
-          has an annual budget of about $9M. Created in 2017 to coordinate the
-          City’s anti-violence efforts, OVP has not had success in reducing the
-          city’s violence levels: homicides and shootings have increased each
-          year since the office was created.
+          funding, these programs will receive a combined $6.6M in funding in
+          FY22. While GVI and CCIP are versions of evidence-based programs that
+          have had success in other cities, it is difficult to measure the
+          programs’ effectiveness in Philadelphia as the City has not released
+          evaluation of these programs publicly. These programs are administered
+          by the City’s Office of Violence Prevention. The office, which has an
+          annual budget of about $9M, was created in 2017 to coordinate the
+          City’s anti-violence efforts. However, its creation has not led to a
+          measurable reduction in gun violence, as Philadelphia’s homicide rate
+          has continued to rise each year since 2017. In response to the
+          increasing violence levels, the City created the Office of Policy and
+          Strategic Initiatives for Criminal Justice and Public Safety in 2021
+          to oversee the Office of Violence Prevention and improve the
+          coordination of the City’s public safety efforts.
         </p>
-
         <p>
           The City also earmarked $20M for Anti-Violence Community Expansion
-          Grants. These grants will “focus on supporting mid-size organizations
-          with a proven track-record working in neighborhoods vulnerable to gun
-          violence” and must be used for projects occurring between fall 2021
-          and summer 2022.<sup><a href="#ref4" id="fn4">[4]</a></sup> The grants
-          can be used to fund new or existing programming in one of two areas:
-          Trauma Informed Healing and Restorative Practices; and Safe Havens and
-          Mentorship. For the purpose of this analysis, these grants are
-          classified as intervention. However, the decision to do so is a
-          cautious one.
+          Grants. These grants will focus on supporting mid-size organizations
+          working in neighborhoods impacted by gun violence and must be used for
+          projects occurring between fall 2021 and summer 2022.<sup
+            ><a href="#ref4" id="fn4">[4]</a></sup
+          >
+          The grants can be used to fund new or existing programming in one of
+          two areas: Trauma Informed Healing and Restorative Practices; and Safe
+          Havens and Mentorship. To help administer these grants, City Council
+          and the Kenney administration created the Violence Prevention and
+          Opportunity Monitoring Group. This group will help craft the request
+          for proposals, working with organizations selected by the
+          administration, and ultimately measuring outcomes to inform future
+          funding decisions. For the purpose of this analysis, these grants are
+          classified as intervention. However, as the grants have not yet been
+          awarded, it is possible that some of the selected organizations will
+          focus on longer-term prevention rather than intervention work.
         </p>
-        <p>
-          As previously stated, intervention programming focuses on interrupting
-          violence in the short term. While the grant application calls for some
-          evidence-based interventions that may have an impact on violence now,
-          like cognitive behavioral therapy, it also calls for broader
-          programming with long-term goals like reducing poverty. Additionally,
-          intervention programming should be targeted to those most likely to
-          shoot or be shot. The grant application states that “special
-          consideration” will be given to projects in areas most impacted by gun
-          violence, listing 27 of Philadelphia’s 47 ZIP codes as most affected.
-          However, the application also states that the grants are open to
-          citywide participation. Given these details, there is substantial risk
-          that the funding could be used to support longer-term preventive
-          initiatives, may not be targeted appropriately, or be too widely
-          spread across the city to reduce homicides and shootings in the worst
-          impacted neighborhoods in the short-term.
-        </p>
-
         <p>
           The Community Expansion Grants could provide a unique opportunity for
           Philadelphia to expand its evidence-based community violence
@@ -282,7 +274,7 @@
           as violence interrupters, to work directly with the individuals most
           at risk from gun violence, intervene before violence occurs, and
           connect them to social and economic resources. CVIs are the foundation
-          of the federal’s government’s recently released Comprehensive Strategy
+          of the federal government’s recently released Comprehensive Strategy
           to Prevent and Respond to Gun Crime and Ensure Public Safety. They are
           also one of the highlighted use cases for the $350B in state and local
           aid in the American Rescue Plan (ARP).<sup
@@ -303,30 +295,44 @@
           for intervention-focused initiatives during FY22.
         </p>
 
+        <h2 class="mb-2 mt-5">Conclusion</h2>
+        <hr class="titlebar" />
         <p>
-          An equitable violence reduction strategy must certainly include
-          investments in long-term strategies that can create transformational
-          change in the city’s historically disadvantaged communities. However,
-          Philadelphia is currently on pace for the most violent year in its
-          history. Additional investments must be made in interventions to stop
-          the violence in the short-term. As other large cities have done, and
-          the federal government has recommended, Philadelphia must increase its
-          investment in short-term intervention programs. When properly funded
-          and implemented, there are proven, community-based strategies that can
-          save the lives of Philadelphians — primarily the lives of young Black
-          men — in the coming months.
+          In 2020, Philadelphia experienced 499 homicides, the second most
+          violent year in its recorded history. The violence has only worsened
+          in 2021. In response, the City significantly expanded its investment
+          in anti-violence strategies in FY22, adding $68M in new funding for a
+          total of $155M to reduce gun violence citywide. Given the magnitude of
+          the city’s gun violence crisis and the considerable funds dedicated to
+          addressing it, transparency around the administration’s plan is
+          critically important. In examining the individual anti-violence
+          initiatives funded, the Controller’s Office found that some of the
+          funds are earmarked for purposes other than violence reduction
+          programs and that the majority is directed to prevention and
+          transformation strategies with only 21 percent allocated to violence
+          intervention. While prevention and transformation strategies are vital
+          to long-term community development and addressing the systemic
+          challenges that contribute to violence, intervention programs are
+          critical to reducing violence in the short-term. As such, the
+          Controller’s Office recommends that the City increase its support for
+          anti-violence programs overall, and specifically, that the City should
+          increase funding for evidence-based violence interventions with proven
+          track records of reducing shootings and homicides in the short term.
         </p>
 
         <p class="font-italic mt-5">
-          Explore the full list of anti-violence programs funded in FY22 using
-          the
-          <router-link to="/explorer">Funding Explorer</router-link>.
+          <i class="fas fa-long-arrow-alt-right fa-2x my-arrow mr-1"></i>
+          <span
+            >Explore the full list of anti-violence programs funded in FY22
+            using the
+            <router-link to="/explorer">Funding Explorer</router-link>.</span
+          >
         </p>
       </div>
     </div>
     <div class="section footnotes">
       <!-- Header -->
-      <h2 class="mb-2 mt-5">Footnotes</h2>
+      <h2 class="mb-2">Footnotes</h2>
       <hr class="titlebar" />
 
       <!-- Footnote #1 -->
@@ -519,6 +525,13 @@ export default {
 </script>
 
 <style>
+.my-arrow {
+  vertical-align: -0.6rem !important;
+  color: #2176d2;
+}
+.section.footnotes {
+  margin-top: 100px !important;
+}
 .subtitle {
   font-weight: 500;
   font-size: 1.4rem;

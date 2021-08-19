@@ -387,10 +387,19 @@ export default {
 
       // Trim by categories
       let selectedValues;
-      if (this.selectedCategories.length > 0) {
+      let selectedCategories = this.selectedCategories;
+      if (selectedCategories.length > 0) {
+        // Get the categorie names from the indices
         selectedValues = this.allowedCategories
-          .filter((item) => this.selectedCategories.indexOf(item.id) !== -1)
+          .filter((item) => selectedCategories.indexOf(item.id) !== -1)
           .map((item) => item.value);
+
+        // Make sure Intervention/Prevention is handled
+        if (selectedValues.indexOf("Intervention") !== -1) {
+          selectedValues.push("Intervention/Prevention");
+        }
+
+        // Filter by categories
         out = out.filter(
           (item) => selectedValues.indexOf(item.short_cat) !== -1
         );
